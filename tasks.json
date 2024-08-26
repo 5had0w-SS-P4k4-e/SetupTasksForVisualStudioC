@@ -65,10 +65,10 @@
             "args": [
                 "-atExit",
                 "--",
-                "./${workspaceFolder}/out/*.app",
-                "|",
+                "${workspaceFolder}/out/${fileBasenameNoExtension}.app",
+/*                 "|",
                 "grep",
-                "LEAK:",
+                "LEAK:", */
             ],
             "problemMatcher": [],
             "group": {
