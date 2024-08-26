@@ -1,0 +1,118 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Build",
+            "type": "shell",
+            "dependsOn": [
+                "mkdir_out",
+                "CLANF-FORMAT",
+                "Compile",
+                "RUN_copiled_file"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+        {
+            "label": "Test Build",
+            "type": "shell",
+            "dependsOn": [
+                "LEAKS test"
+            ],
+            "group": {
+                "kind": "test",
+                "isDefault": true
+            }
+        },
+        {
+            "label": "Compile",
+            "type": "shell",
+            "command": "gcc",
+            "args": [
+                "-Wall",
+                "-Wextra",
+                "-Werror",
+                "-o",
+                "${workspaceFolder}/out/${fileBasenameNoExtension}.app", // Имя выходного файла без расширения
+                "${file}" // Текущий файл
+            ],
+            "problemMatcher": [],
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            }
+        },
+        {
+            "label": "CLANF-FORMAT",
+            "type": "shell",
+            "command": "bash",
+            "args": [
+                "-c",
+                "find \"${workspaceFolder}/src\" \\( -name \"*.cpp\" -o -name \"*.c\" -o -name \"*.h\" \\) -exec clang-format -style=file:\"${workspaceFolder}/materials/linters/.clang-format\" -i {} \\;"
+            ],
+            "problemMatcher": [],
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            }
+        },
+        {
+            "label": "LEAKS test",
+            "type": "shell",
+            "command": "leaks",
+            "args": [
+                "-atExit",
+                "--",
+                "./${workspaceFolder}/out/*.app",
+                "|",
+                "grep",
+                "LEAK:",
+            ],
+            "problemMatcher": [],
+            "group": {
+                "kind": "test",
+                "isDefault": false
+            }
+        },
+        {
+            "label": "VALGRIND test",
+            "type": "shell",
+            "command": "valgrind",
+            "args": [
+                "--tool=memcheck",
+                "--leak-check=yes",
+                "./${workspaceFolder}/out/*.app",
+                "|",
+                "grep",
+                "LEAK:",
+            ],
+            "problemMatcher": [],
+            "group": {
+                "kind": "test",
+                "isDefault": false
+            }
+        },
+        {
+            "label": "mkdir_out",
+            "type": "shell",
+            "command": "mkdir -p ${workspaceFolder}/out/",
+            "problemMatcher": [],
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            }
+        },
+        {
+            "label": "RUN_copiled_file",
+            "type": "shell",
+            "command": "${workspaceFolder}/out/${fileBasenameNoExtension}.app",
+            "problemMatcher": [],
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            }
+        }
+    ]
+}
