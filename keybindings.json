@@ -1,0 +1,9 @@
+    {
+        "key": "f5",
+        "command": "workbench.action.tasks.build",
+        "when": "taskCommandsRegistered"
+    },
+    {
+        "key": "f6",
+        "command": "workbench.action.tasks.test"
+    }
