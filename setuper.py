@@ -5,6 +5,7 @@ import os
 # Пути к локальным файлам
 TASKS_FILE = os.path.expanduser('~/Library/Application Support/Code/User/tasks.json')
 KEYBINDINGS_FILE = os.path.expanduser('~/Library/Application Support/Code/User/keybindings.json')
+LOG_FILE = '/tmp/setuper_output.log'
 
 def load_json(file_path):
     with open(file_path, 'r') as f:
@@ -41,12 +42,14 @@ def main():
     new_tasks_data = load_json(tasks_file_path)
     new_keybindings_data = load_json(keybindings_file_path)
 
-    # Обновляем локальные файлы
-    update_json_file(TASKS_FILE, new_tasks_data)
-    update_json_file(KEYBINDINGS_FILE, new_keybindings_data)
+    # Открываем лог-файл для записи
+    with open(LOG_FILE, 'a') as log_file:
+        # Обновляем локальные файлы и записываем в лог
+        update_json_file(TASKS_FILE, new_tasks_data)
+        log_file.write(f"{TASKS_FILE} успешно обновлён!\n")
 
-    print(f"{TASKS_FILE} успешно обновлён!")
-    print(f"{KEYBINDINGS_FILE} успешно обновлён!")
+        update_json_file(KEYBINDINGS_FILE, new_keybindings_data)
+        log_file.write(f"{KEYBINDINGS_FILE} успешно обновлён!\n")
 
-
-main()
+if __name__ == "__main__":
+    main()
