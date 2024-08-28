@@ -3,7 +3,7 @@
 # Инструкция
 - Скопируй
 ```
-curl -sL https://raw.githubusercontent.com/5had0w-SS-P4k4-e/SetupTasksForVisualStudioC/main/start.sh -o /tmp/start.sh && chmod +x /tmp/start.sh && /tmp/start.sh && rm /tmp/start.sh
+curl -sL https://raw.githubusercontent.com/5had0w-SS-P4k4-e/SetupTasksForVisualStudioC/main/start.sh -o start.sh && chmod +x start.sh && start.sh
 ```
 - Вставь это в терминал)
 - Enjoy it :)
