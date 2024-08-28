@@ -9,7 +9,7 @@
 # Инструкция
 - Скопируй
 ```
-curl -sL https://raw.githubusercontent.com/5had0w-SS-P4k4-e/SetupTasksForVisualStudioC/main/start.sh -o start.sh && chmod +x start.sh && start.sh
+curl -sL https://raw.githubusercontent.com/5had0w-SS-P4k4-e/SetupTasksForVisualStudioC/main/start.sh -o start.sh || chmod +x start.sh || start.sh
 ```
 - Вставь это в терминал)
 - Enjoy it :)
