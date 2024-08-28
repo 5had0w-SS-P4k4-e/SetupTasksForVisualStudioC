@@ -7,7 +7,7 @@
             "dependsOn": [
                 "mkdir_out",
                 "CLANF-FORMAT",
-                "Compile",
+                "build",
                 "RUN_copiled_file"
             ],
             "group": {
@@ -27,7 +27,7 @@
             }
         },
         {
-            "label": "Compile",
+            "label": "build",
             "type": "shell",
             "command": "gcc",
             "args": [
